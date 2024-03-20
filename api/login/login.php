@@ -25,10 +25,10 @@ $data = json_decode(file_get_contents("php://input"));
 if (!empty($data->email) && !empty($data->password)) {
     $email = $data->email;
     $password = $data->password;
-    $type = $data->type;
+  
 
     // Call your login function with the provided credentials
-    $result = $employee->login($type, $email, $password);
+    $result = $employee->login($email, $password);
 
     if ($result) {
         // If login is successful, send a success response with the user data
