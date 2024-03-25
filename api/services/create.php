@@ -2,9 +2,9 @@
 require_once "../../config/config.php";
 include_once "../../models/services/index.php";
 header("Access-Control-Allow-Origin:*");
-header("Content-service:application/json");
+header("Content-Type:application/json");
 header('Access-Control-Allow-Methods:POST');
-header("Access-Control-Allow-Headers:Access-Control-Allow-Headers,Content-service,Access-Control-Allow-Methods,Authorization,X-Requested-With");
+header("Access-Control-Allow-Headers:Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With");
 
 
 // Now you can directly use $conn

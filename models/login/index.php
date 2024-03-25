@@ -24,7 +24,7 @@ class Login
         try {
 
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $query = "SELECT u.fullnames, u.email, u.profile_url, ut.title, ut.id as user_type_id
+                $query = "SELECT u.id, u.fullnames, u.email, u.profile_url, ut.title, ut.id as user_type_id
                 FROM users u
                 LEFT JOIN user_type ut ON u.user_type = ut.id   WHERE 
                        email = :email AND password = :password
