@@ -6,7 +6,7 @@ class OwnerCar
 {
     private $conn;
     private $table = 'Owners';
-    public $owner_id;
+    public $id;
     public $first_name;
     public $last_name;
     public $email;
@@ -54,8 +54,8 @@ class OwnerCar
         try {
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $checkStmt = $this->conn->prepare("SELECT COUNT(*) FROM " . $this->table . " WHERE owner_id = :owner_id");
-            $checkStmt->bindParam(':owner_id', $data["owner_id"]);
+            $checkStmt = $this->conn->prepare("SELECT COUNT(*) FROM " . $this->table . " WHERE id = :id");
+            $checkStmt->bindParam(':id', $data["id"]);
             $checkStmt->execute();
             $count = $checkStmt->fetchColumn();
 
@@ -69,7 +69,7 @@ class OwnerCar
                                                 email = :email,
                                                 phone_number = :phone_number,
                                                 address = :address
-                                                WHERE owner_id = :owner_id");
+                                                WHERE id = :id");
 
             $updateStmt->execute([
                 "first_name" => $data["first_name"],
@@ -77,7 +77,7 @@ class OwnerCar
                 "email" => $data["email"],
                 "phone_number" => $data["phone_number"],
                 "address" => $data["address"],
-                "owner_id" => $data["owner_id"]
+                "id" => $data["id"]
             ]);
 
             return true;
@@ -103,13 +103,13 @@ class OwnerCar
         }
     }
 
-    public function delete($owner_id)
+    public function delete($id)
     {
         try {
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $checkStmt = $this->conn->prepare("SELECT COUNT(*) FROM " . $this->table . " WHERE owner_id = :owner_id");
-            $checkStmt->bindParam(':owner_id', $owner_id);
+            $checkStmt = $this->conn->prepare("SELECT COUNT(*) FROM " . $this->table . " WHERE id = :id");
+            $checkStmt->bindParam(':id', $id);
             $checkStmt->execute();
             $count = $checkStmt->fetchColumn();
 
@@ -117,12 +117,13 @@ class OwnerCar
                 return false;
             }
 
-            $deleteStmt = $this->conn->prepare("DELETE FROM " . $this->table . " WHERE owner_id = :owner_id");
-            $deleteStmt->bindParam(':owner_id', $owner_id);
+            $deleteStmt = $this->conn->prepare("DELETE FROM " . $this->table . " WHERE id = :id");
+            $deleteStmt->bindParam(':id', $id);
             $deleteStmt->execute();
 
             return true;
         } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage(); // Output or log the error message
             return false;
         }
     }

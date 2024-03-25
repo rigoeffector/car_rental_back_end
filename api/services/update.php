@@ -1,10 +1,11 @@
 <?php
 require_once "../../config/connection.php";
-header("Access-Control-Allow-Origin: *");
-header("Content-service: application/json");
-header('Access-Control-Allow-Methods: PATCH'); // Change the method to PUT for updates
-header("Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-service,Access-Control-Allow-Methods,Authorization,X-Requested-With");
 include_once "../../models/services/index.php";
+
+header("Access-Control-Allow-Origin:*");
+header("Content-Type:application/json");
+header('Access-Control-Allow-Methods:PATCH');
+header("Access-Control-Allow-Headers:Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With");
 
 // Now you can directly use $conn
 $db = $conn;

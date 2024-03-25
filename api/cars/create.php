@@ -13,7 +13,7 @@ $carInfo = new CarInfo($db); // Instantiate the CarInfo class
 
 $data = json_decode(file_get_contents("php://input"), true); // Decode JSON as an array
 
-if (!empty($data['make']) && !empty($data['model']) && !empty($data['year']) && !empty($data['color']) && !empty($data['vin']) && !empty($data['registration_plate']) && !empty($data['owner_id']) && !empty($data['service_id']) && !empty($data['car_image'])) { // Check if required fields are provided
+if (!empty($data['make']) && !empty($data['model']) && !empty($data['year']) && !empty($data['color']) && !empty($data['vin']) && !empty($data['registration_plate'])  && !empty($data['service_id']) && !empty($data['car_image'])) { // Check if required fields are provided
     // Prepare data to be sent
     $carInfoData = [
         "make" => $data['make'],
@@ -22,8 +22,8 @@ if (!empty($data['make']) && !empty($data['model']) && !empty($data['year']) && 
         "color" => $data['color'],
         "vin" => $data['vin'],
         "registration_plate" => $data['registration_plate'],
-        "owner_id" => $data['owner_id'],
         "service_id" => $data['service_id'],
+        "owner_id" => $data['owner_id'],
         "car_image" => $data['car_image']
     ];
 

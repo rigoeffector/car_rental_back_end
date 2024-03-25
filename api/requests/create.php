@@ -37,7 +37,7 @@ if (!empty($data['user_id']) && !empty($data['service_id']) && !empty($data['car
             "status" => "error",
             "error" => true,
             "success" => false,
-            "message" => "Failed to create user request."
+            "message" => "You already requested this car"
         ];
         echo json_encode($response);
     }

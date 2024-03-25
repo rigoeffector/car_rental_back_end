@@ -22,10 +22,10 @@ if ($result !== false) {
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
             $userRequestItem = array(
-                "request_id" => $request_id,
+                "request_id" => $id,
                 "service_id" => $service_id,
                 "service_title" => $service_title,
-                "car_id" => $car_id,
+                "id" => $id,
                 "car_make" => $car_make,
                 "car_model" => $car_model,
                 "car_image" => $car_image,

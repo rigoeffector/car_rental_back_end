@@ -1,10 +1,11 @@
 <?php
 require_once "../../config/connection.php";
-header("Access-Control-Allow-Origin:*");
-header("Content-owner:application/json");
-header('Access-Control-Allow-Methods:DELETE'); // Use DELETE method for deletion
-header("Access-Control-Allow-Headers:Access-Control-Allow-Headers,Content-owner,Access-Control-Allow-Methods,Authorization,X-Requested-With");
 include_once "../../models/owners/index.php";
+header("Access-Control-Allow-Origin:*");
+header("Content-Type:application/json");
+header('Access-Control-Allow-Methods:DELETE');
+header("Access-Control-Allow-Headers:Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With");
+
 
 // Now you can directly use $conn
 $db = $conn;
@@ -13,9 +14,9 @@ $owner = new OwnerCar($db);
 $data = json_decode(file_get_contents("php://input"), true); // Decode JSON as an array
 
 // Check if "id" is set and not empty
-if (isset($data['owner_id']) && !empty($data['owner_id'])) {
+if (isset($data['id']) && !empty($data['id'])) {
     // Delete the record based on the provided ID
-    if ($owner->delete($data['owner_id'])) { // Use the delete function
+    if ($owner->delete($data['id'])) { // Use the delete function
         $response = array(
             "status" => "success",
             "error" => false,

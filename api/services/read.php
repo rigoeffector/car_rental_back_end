@@ -20,7 +20,9 @@ if ($num > 0) {
         $service_item = array(
             "id" => $id,
             "icon" => $car_icon,
-            "title" => $title
+            "title" => $title,
+            "user_type"=>$user_type,
+            "user_type_id"=>$user_type_id
 
         );
 

@@ -12,7 +12,7 @@ $ownerService = new OwnerCar($db); // Instantiate the OwnerServices class
 
 $data = json_decode(file_get_contents("php://input"), true); // Decode JSON as an array
 
-if (isset($data['owner_id']) && isset($data['first_name']) && !empty($data['owner_id']) && !empty($data['first_name'])) {
+if (isset($data['id']) && isset($data['first_name']) && !empty($data['id']) && !empty($data['first_name'])) {
     // Update the record based on the provided data
     if ($ownerService->update($data)) { // Use the update function with the data array
         $response = array(

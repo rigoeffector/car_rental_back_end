@@ -37,6 +37,7 @@ class Requests
 
             return true;
         } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage(); // Output or log the error message
             return false;
         }
     }
@@ -46,9 +47,9 @@ class Requests
    public function readAll()
    {
        try {
-           $query = "SELECT UR.request_id, UR.user_id, UR.service_id, UR.car_id, UR.request_date, UR.status, 
+           $query = "SELECT UR.id, UR.user_id, UR.service_id, UR.id, UR.request_date, UR.status, 
            U.fullnames AS user_username, 
-           CS.title AS service_title, CI.make AS car_make, CI.model AS car_model, CI.car_image,
+           CS.title AS service_title, CI.id AS car_id, CI.make AS car_make, CI.model AS car_model, CI.car_image,
            UB.id AS approved_by,
            UB.fullnames AS approved_by_name,
            UR2.id AS returned_by,
@@ -58,7 +59,7 @@ class Requests
        FROM UserRequests UR
        LEFT JOIN Users U ON UR.user_id = U.id
        LEFT JOIN car_services CS ON UR.service_id = CS.id
-       LEFT JOIN CarInformation CI ON UR.car_id = CI.car_id
+       LEFT JOIN CarInformation CI ON UR.car_id = CI.id
        LEFT JOIN Users UB ON UR.approved_by = UB.id
        LEFT JOIN Users UR2 ON UR.returned_by = UR2.id
        LEFT JOIN Users UP ON UR.passed_by = UP.id

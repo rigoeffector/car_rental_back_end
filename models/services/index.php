@@ -9,6 +9,7 @@ class CarServices
     public $id;
     public $car_icon;
     public $title;
+    public $user_type_id;
    
 
 
@@ -35,11 +36,12 @@ class CarServices
             }
 
 
-            $insertStmt = $this->conn->prepare("INSERT INTO $this->table (car_icon, title) 
-         VALUES (:car_icon, :title)");
+            $insertStmt = $this->conn->prepare("INSERT INTO $this->table (car_icon, title, user_type_id) 
+         VALUES (:car_icon, :title,:user_type_id)");
             $insertStmt->execute([
                 "car_icon" => $data["car_icon"],
-                "title" => $data["title"]
+                "title" => $data["title"],
+                "user_type_id"=> $data["user_type_id"]
                
 
             ]);
@@ -72,13 +74,15 @@ class CarServices
             // Proceed with the update
             $updateStmt = $this->conn->prepare("UPDATE " . $this->table . " SET
             car_icon = :car_icon,
-            title = :title
+            title = :title,
+            user_type_id =:user_type_id
           
             WHERE id = :id");
 
             $updateStmt->execute([
                 "car_icon" => $data["car_icon"],
                 "title" => $data["title"] ,
+                "user_type_id"=> $data["user_type_id"],
                 "id" => $data["id"] 
              
 
@@ -99,8 +103,9 @@ class CarServices
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // Define the SQL query with a JOIN statement
-            $query = "SELECT *
-            FROM ". $this->table ;
+            $query = "SELECT cs.id, cs.car_icon, cs.title, cs.user_type_id, ut.title  as user_type  FROM car_services cs
+
+            LEFT JOIN user_type ut ON cs.user_type_id = ut.id";
 
 
             // Prepare and execute the query
@@ -109,7 +114,7 @@ class CarServices
 
             return $stmt;
         } catch (PDOException $e) {
-
+            echo "Error: " . $e->getMessage(); // Output or log the error message
             return false;
         }
     }
@@ -141,8 +146,8 @@ class CarServices
 
             return true; // Return a success indicator if the delete was successful.
         } catch (PDOException $e) {
-            // Handle any database errors here.
-            return false; // Return a failure indicator if an error occurred.
+            echo "Error: " . $e->getMessage(); // Output or log the error message
+            return false;
         }
     }
 }

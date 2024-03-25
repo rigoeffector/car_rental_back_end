@@ -19,7 +19,7 @@ if ($num > 0) {
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
         $owner_item = array(
-            "owner_id" => $owner_id,
+            "id" => $id,
             "first_name" => $first_name,
             "last_name" => $last_name,
             "email" => $email,

@@ -20,14 +20,15 @@ if ($num > 0) {
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
         $car_item = array(
-            "car_id" => $car_id,
+            "id" => $id,
             "make" => $make,
             "model" => $model,
             "year" => $year,
             "color" => $color,
             "vin" => $vin,
+            "is_available"=>$is_available ==1 ? TRUE:  FALSE,
             "registration_plate" => $registration_plate,
-            "owner_id" => $owner_id,
+            "id" => $id,
             "service_id" => $service_id,
             "car_image" => $car_image,
             "owner_first_name" => $owner_first_name,
