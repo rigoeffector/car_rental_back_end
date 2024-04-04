@@ -26,8 +26,11 @@ if ($result !== false) {
                 "service_id" => $service_id,
                 "service_title" => $service_title,
                 "id" => $id,
+                "car_id"=>$car_id,
                 "car_make" => $car_make,
                 "car_model" => $car_model,
+                "is_available"=>$is_available ==1? true: false,
+
                 "car_image" => $car_image,
                 "request_date" => $request_date,
                 "status" => $status,

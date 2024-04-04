@@ -13,7 +13,7 @@ $userRequests = new Requests($db); // Instantiate the UserRequests class
 
 $data = json_decode(file_get_contents("php://input"), true); // Decode JSON as an array
 
-if (isset($data['request_id']) && !empty($data['request_id'])) {
+if (isset($data['id']) && !empty($data['id'])) {
     // Update the record based on the provided data
     if ($userRequests->update($data)) { // Use the update function with the data array
         $response = array(
